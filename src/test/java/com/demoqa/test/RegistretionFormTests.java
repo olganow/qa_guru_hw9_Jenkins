@@ -3,9 +3,9 @@ package com.demoqa.test;
 import com.codeborne.selenide.Configuration;
 import com.demoqa.page.RegistrationFormPage;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-import java.io.File;
 
 
 public class RegistretionFormTests {
@@ -35,7 +35,7 @@ public class RegistretionFormTests {
         Configuration.browserSize = "1920x1080";
 
     }
-
+@Disabled
     @Test
     void successfulSubmitFormTest() {
         registrationFormPage
