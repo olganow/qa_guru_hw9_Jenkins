@@ -1,5 +1,6 @@
 package com.demoqa.test;
 
+import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
@@ -15,7 +16,10 @@ import static com.codeborne.selenide.Selenide.$;
 public class CambrigeTests {
 
     @BeforeEach
+
     void setUp() {
+        Configuration.baseUrl = "https://dictionary.cambridge.org/";
+        Configuration.browserSize = "1920x1080";
         open("https://dictionary.cambridge.org/");
     }
 
