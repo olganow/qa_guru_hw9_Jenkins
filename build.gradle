@@ -7,7 +7,7 @@ group 'org.example'
 version '1.0-SNAPSHOT'
 
 def allureVersion = "2.19.0",
-        slf4jVersion = "1.7.32" ////org.slf4j.impl.StaticLoggerBinder логгер добавили
+    slf4jVersion = "1.7.32" ////org.slf4j.impl.StaticLoggerBinder логгер добавили
 
 allure {
     report {
@@ -42,3 +42,4 @@ test {
     useJUnitPlatform()
     systemProperties(System.getProperties())
 }
+
