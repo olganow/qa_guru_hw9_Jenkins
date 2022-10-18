@@ -29,8 +29,8 @@ repositories {
 
 dependencies {
     testImplementation(
-            'org.junit.jupiter:junit-jupiter:5.9.0',
-            'com.codeborne:selenide:6.8.1',
+            'org.junit.jupiter:junit-jupiter:5.9.1',
+            'com.codeborne:selenide:6.9.0',
             'io.qameta.allure:allure-selenide:2.19.0',
             "org.slf4j:slf4j-simple:$slf4jVersion" //org.slf4j.impl.StaticLoggerBinder логгер добавили
     )
