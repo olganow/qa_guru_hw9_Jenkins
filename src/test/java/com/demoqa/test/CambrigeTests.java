@@ -1,10 +1,7 @@
 package com.demoqa.test;
 
 import com.codeborne.selenide.Configuration;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -14,13 +11,17 @@ import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Selenide.$;
 
 public class CambrigeTests {
-
+@BeforeAll
+static  void configure(){
+    Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
+}
     @BeforeEach
 
     void setUp() {
         Configuration.baseUrl = "https://dictionary.cambridge.org/";
         Configuration.browserSize = "1920x1080";
         open("https://dictionary.cambridge.org/");
+
     }
 
     @Disabled("It is very simple test")
@@ -34,6 +35,7 @@ public class CambrigeTests {
                 .shouldHave(text("EXAMPLES of " + testData));
     }
 
+    @Disabled
     @ValueSource(strings = {"guttersnipe", "advantage"})
     // TEST DATA: ["guttersnipe", "advantage"]
     @ParameterizedTest
@@ -45,7 +47,7 @@ public class CambrigeTests {
         $x("//h2[contains(text(),'Examples')]")
                 .shouldHave(text("EXAMPLES of " + testData));
     }
-
+    @Disabled
     @CsvSource(value = {
             "guttersnipe, a child from a poor area of a town who is dirty and badly dressed :",
             "advantage,  a condition giving a greater chance of success:"

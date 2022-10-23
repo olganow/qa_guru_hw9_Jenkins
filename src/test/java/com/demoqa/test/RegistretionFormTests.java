@@ -3,7 +3,6 @@ package com.demoqa.test;
 import com.codeborne.selenide.Configuration;
 import com.demoqa.page.RegistrationFormPage;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 
@@ -33,9 +32,10 @@ public class RegistretionFormTests {
     static void setUp() {
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.browserSize = "1920x1080";
+        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
 
     }
-@Disabled
+
     @Test
     void successfulSubmitFormTest() {
         registrationFormPage
