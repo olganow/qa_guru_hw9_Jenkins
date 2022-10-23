@@ -1,10 +1,13 @@
 package com.demoqa.test;
 
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.logevents.SelenideLogger;
 import com.demoqa.page.RegistrationFormPage;
+import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import static io.qameta.allure.Allure.step;
 
 
 public class RegistretionFormTests {
@@ -30,6 +33,7 @@ public class RegistretionFormTests {
 
     @BeforeAll
     static void setUp() {
+        SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.browserSize = "1920x1080";
         Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
@@ -38,29 +42,31 @@ public class RegistretionFormTests {
 
     @Test
     void successfulSubmitFormTest() {
-        registrationFormPage
-                .openPage()
-                .setFirstName(firstNameUser)
-                .setLastName(lastNameUser)
-                .setEmail(email)
-                .setGender(gender)
-                .setPhone(phone)
-                .setDateOfBirth(dayOfbirth, monthOfbirth, yearOfBirth)
-                .setSubject(subjectOne, subjectSecond)
-                .setHobby(hobbyOne, hobbySecond)
-                .uploadPicture()
-                .setAddress(address)
-                .setState(state)
-                .setCity(city)
-                .clickSubmit();
+        step("Fill form", () -> {
+                    registrationFormPage
+                            .openPage()
+                            .setFirstName(firstNameUser)
+                            .setLastName(lastNameUser)
+                            .setEmail(email)
+                            .setGender(gender)
+                            .setPhone(phone)
+                            .setDateOfBirth(dayOfbirth, monthOfbirth, yearOfBirth)
+                            .setSubject(subjectOne, subjectSecond)
+                            .setHobby(hobbyOne, hobbySecond)
+                            .uploadPicture()
+                            .setAddress(address)
+                            .setState(state)
+                            .setCity(city)
+                            .clickSubmit();
+                });
 
-
-        registrationFormPage
+        step("Check Form", () -> {
+                registrationFormPage
                 .checkResultsTableVisible();
         registrationFormPage.checkResult(firstNameUser, lastNameUser, email, gender,
                 phone, dayOfbirth, monthOfbirth, yearOfBirth, subjectOne, subjectSecond, hobbyOne, hobbySecond,
                 address, state, city, file);
-
+    });
     }
 
 }
